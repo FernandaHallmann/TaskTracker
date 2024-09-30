@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Task Tracker</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+</head>
+<body class="bg-gray-100">
+
+    <div class="container mx-auto p-6 bg-white rounded-lg shadow-md mt-10">
+        <h1 class="text-3xl font-bold text-center mb-6 text-blue-600">Task Tracker</h1>
+
+        <div class="flex space-x-4 mb-6">
+            <button id="task-tab" class="px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700" onclick="showSection('tasks')">Tarefas</button>
+            <button id="habits-tab" class="px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700" onclick="showSection('habits')">Hábitos</button>
+            <button id="users-tab" class="px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700" onclick="showSection('users')">Usuários</button>
+        </div>
+
+        <div id="tasks-section" class="section">
+            <form class="flex flex-col" id="add-task-form">
+                <div class="mb-4">
+                  <label for="description" class="block text-sm font-medium text-gray-700">Descrição:</label>
+                  <input type="text" id="description" required class="mt-1 block w-full p-2 border border-gray-300 rounded-md shadow-sm focus:ring focus:ring-blue-500">
+                </div>
+      
+                <div class="flex space-x-4 mb-4">
+                  <div class="flex-1">
+                      <label for="start-date" class="block text-sm font-medium text-gray-700">Data Início:</label>
+                      <input type="datetime-local" id="start-date" required class="mt-1 block w-full p-2 border border-gray-300 rounded-md shadow-sm focus:ring focus:ring-blue-500">
+                  </div>
+              
+                  <div class="flex-1">
+                      <label for="end-date" class="block text-sm font-medium text-gray-700">Data Limite:</label>
+                      <input type="datetime-local" id="end-date" required class="mt-1 block w-full p-2 border border-gray-300 rounded-md shadow-sm focus:ring focus:ring-blue-500">
+                  </div>
+              
+                  <div class="flex-1">
+                      <label for="user" class="block text-sm font-medium text-gray-700">Usuário ID:</label>
+                      <input type="number" id="user" required class="mt-1 block w-full p-2 border border-gray-300 rounded-md shadow-sm focus:ring focus:ring-blue-500">
+                  </div>
+                </div>
+                
+                <button type="submit" class="bg-blue-600 text-white p-2 rounded-md hover:bg-blue-700 transition duration-200">Adicionar Tarefa</button>
+              </form>
+            <h2 class="text-xl font-semibold mt-6 mb-4">Lista de Tarefas</h2>
+            <div class="overflow-x-auto">
+                <table class="min-w-full bg-white border border-gray-200">
+                    <thead>
+                        <tr class="bg-gray-100 border-b">
+                            <th class="px-4 py-2 text-left">Descrição</th>
+                            <th class="px-4 py-2 text-left">Data Início</th>
+                            <th class="px-4 py-2 text-left">Data Limite</th>
+                            <th class="px-4 py-2 text-left">Concluído</th>
+                            <th class="px-4 py-2 text-left">Ação</th>
+                        </tr>
+                    </thead>
+                    <tbody id="task-list"></tbody>
+                </table>
+            </div>
+        </div>
+
+        <div id="habits-section" class="section hidden">
+            <form class="flex flex-col" id="add-habit-form">
+                <div class="mb-4">
+                    <label for="habit-description" class="block text-sm font-medium text-gray-700">Descrição do Hábito:</label>
+                    <input type="text" id="habit-description" required class="mt-1 block w-full p-2 border border-gray-300 rounded-md shadow-sm focus:ring focus:ring-blue-500">
+                </div>
+                <div class="mb-4">
+                    <label for="habit-user" class="block text-sm font-medium text-gray-700">Usuário ID:</label>
+                    <input type="number" id="habit-user" required class="mt-1 block w-full p-2 border border-gray-300 rounded-md shadow-sm focus:ring focus:ring-blue-500">
+                </div>
+                <button type="submit" class="bg-blue-600 text-white p-2 rounded-md hover:bg-blue-700">Adicionar Hábito</button>
+            </form>
+            <h2 class="text-xl font-semibold mt-6 mb-4">Lista de Hábitos</h2>
+            <div class="overflow-x-auto">
+                <table class="min-w-full bg-white border border-gray-200">
+                    <thead>
+                        <tr class="bg-gray-100 border-b">
+                            <th class="px-4 py-2 text-left">Descrição</th>
+                            <th class="px-4 py-2 text-left">Usuário ID</th>
+                        </tr>
+                    </thead>
+                    <tbody id="habit-list"></tbody>
+                </table>
+            </div>
+        </div>
+
+        <div id="users-section" class="section hidden">
+            <form class="flex flex-col" id="add-user-form">
+                <div class="mb-4">
+                    <label for="user-name" class="block text-sm font-medium text-gray-700">Nome do Usuário:</label>
+                    <input type="text" id="user-name" required class="mt-1 block w-full p-2 border border-gray-300 rounded-md shadow-sm focus:ring focus:ring-blue-500">
+                </div>
+                <div class="mb-4">
+                    <label for="user-email" class="block text-sm font-medium text-gray-700">E-mail do Usuário:</label>
+                    <input type="email" id="user-email" required class="mt-1 block w-full p-2 border border-gray-300 rounded-md shadow-sm focus:ring focus:ring-blue-500">
+                </div>
+                <div class="mb-4">
+                    <label for="user-password" class="block text-sm font-medium text-gray-700">Senha do Usuário:</label>
+                    <input type="password" id="user-password" required class="mt-1 block w-full p-2 border border-gray-300 rounded-md shadow-sm focus:ring focus:ring-blue-500">
+                </div>
+                <button type="submit" class="bg-blue-600 text-white p-2 rounded-md hover:bg-blue-700">Adicionar Usuário</button>
+            </form>
+            <h2 class="text-xl font-semibold mt-6 mb-4">Lista de Usuários</h2>
+            <div class="overflow-x-auto">
+                <table class="min-w-full bg-white border border-gray-200">
+                    <thead>
+                        <tr class="bg-gray-100 border-b">
+                            <th class="px-4 py-2 text-left">Nome</th>
+                            <th class="px-4 py-2 text-left">E-mail</th>
+                            <th class="px-4 py-2 text-left">Senha</th>
+                        </tr>
+                    </thead>
+                    <tbody id="user-list"></tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/sockjs-client/dist/sockjs.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/stompjs/lib/stomp.min.js"></script>
+    <script src="app.js"></script>
+</body>
+</html>

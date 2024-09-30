@@ -1,0 +1,19 @@
+body {
+  background-color: #f8f9fa; /* Cor de fundo suave */
+}
+
+h1 {
+  color: #007bff; /* Azul para o título */
+}
+
+h2 {
+  color: #343a40; /* Cor para subtítulos */
+}
+
+.list-group-item {
+  background-color: #fff; /* Fundo branco para itens da lista */
+}
+
+.list-group-item:hover {
+  background-color: #e9ecef; /* Cor ao passar o mouse */
+}

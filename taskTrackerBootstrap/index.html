@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Task Tracker</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+    <div class="container mt-5">
+        <h1 class="text-center mb-4">Task Tracker</h1>
+        <ul class="nav nav-tabs">
+            <li class="nav-item">
+                <a class="nav-link active" data-bs-toggle="tab" href="#tasks">Tarefas</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" data-bs-toggle="tab" href="#habits">Hábitos</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" data-bs-toggle="tab" href="#users">Usuários</a>
+            </li>
+        </ul>
+        <div class="tab-content">
+            <div class="tab-pane fade show active" id="tasks">
+                <form class="mb-4" id="add-task-form">
+                    <div class="mb-3">
+                        <label for="description" class="form-label">Descrição:</label>
+                        <input type="text" id="description" class="form-control" required>
+                    </div>
+                    <div class="row mb-3">
+                        <div class="col">
+                            <label for="start-date" class="form-label">Data Início:</label>
+                            <input type="datetime-local" id="start-date" class="form-control" required>
+                        </div>
+                        <div class="col">
+                            <label for="end-date" class="form-label">Data Limite:</label>
+                            <input type="datetime-local" id="end-date" class="form-control" required>
+                        </div>
+                        <div class="col">
+                            <label for="user" class="form-label">Usuário ID:</label>
+                            <input type="number" id="user" class="form-control" required>
+                        </div>
+                    </div>
+                    <button type="submit" class="btn btn-primary">Adicionar Tarefa</button>
+                </form>
+
+                <table class="table table-bordered">
+                    <thead>
+                        <tr>
+                            <th>Descrição</th>
+                            <th>Data Início</th>
+                            <th>Data Limite</th>
+                            <th>Concluído</th>
+                            <th>Ações</th>
+                        </tr>
+                    </thead>
+                    <tbody id="task-list"></tbody>
+                </table>
+            </div>
+            <div class="tab-pane fade" id="habits">
+                <form class="mb-4" id="add-habit-form">
+                    <div class="mb-3">
+                        <label for="habit-description" class="form-label">Descrição do Hábito:</label>
+                        <input type="text" id="habit-description" class="form-control" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="habit-user" class="form-label">Usuário ID:</label>
+                        <input type="number" id="habit-user" class="form-control" required>
+                    </div>
+                    <button type="submit" class="btn btn-primary">Adicionar Hábito</button>
+                </form>
+
+                <table class="table table-bordered">
+                    <thead>
+                        <tr>
+                            <th>Descrição</th>
+                            <th>Usuário ID</th>
+                        </tr>
+                    </thead>
+                    <tbody id="habit-list"></tbody>
+                </table>
+            </div>
+            <div class="tab-pane fade" id="users">
+                <form class="mb-4" id="add-user-form">
+                    <div class="mb-3">
+                        <label for="user-name" class="form-label">Nome:</label>
+                        <input type="text" id="user-name" class="form-control" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="user-email" class="form-label">Email:</label>
+                        <input type="email" id="user-email" class="form-control" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="user-password" class="form-label">Senha:</label>
+                        <input type="password" id="user-password" class="form-control" required>
+                    </div>
+                    <button type="submit" class="btn btn-primary">Adicionar Usuário</button>
+                </form>
+
+                <table class="table table-bordered">
+                    <thead>
+                        <tr>
+                            <th>Nome</th>
+                            <th>Email</th>
+                            <th>Senha</th>
+                        </tr>
+                    </thead>
+                    <tbody id="user-list"></tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/sockjs-client/1.5.1/sockjs.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/stomp.js/2.3.3/stomp.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="app.js"></script>
+</body>
+</html>
